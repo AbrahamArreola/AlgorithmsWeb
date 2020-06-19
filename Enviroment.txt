@@ -1,0 +1,3 @@
+To active environment:
+
+.\env\Scripts\activate

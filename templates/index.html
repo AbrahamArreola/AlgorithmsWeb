@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithms Web</title>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='javascript/index.js') }}"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/navbar.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+</head>
+<body>
+    {% include "navbar.html" %}
+
+    <div id="container">
+        {% for row in range(10) %}
+        {% for column in range(10) %}
+            <div class="maze" id="tile{{row}}{{column}}" onclick="tileClicked(this)"></div>
+        {% endfor %}
+        <br>
+        {% endfor %}
+    </div>
+
+    <div id="config-div">
+        <h1>Configuration</h1>
+        <p>Steps to solve the map:<br>1. Load a maze which must be a txt file with numbers where 0 is path and 1 is obstacle,
+        each number separated by commas.<br>2. A second option is available where you can select the obstacles by selecting
+        the tiles.<br></p>
+        <fieldset class="map-loader" id="select-load-field">
+            <legend class="map-loader">Select Option</legend>
+            <input type="radio" id="file-load" name="radiobutton" checked>
+            <label for="file-load">Load File</label><br>
+            <input type="radio" id="select-load" name="radiobutton">
+            <label for="select-load">Select obstacles</label>
+        </fieldset>
+
+        <fieldset class="map-loader1" id="load-file-field">
+            <legend class="map-loader">Load file</legend>
+            <div id="group-container">
+                <label for="file">Select file: </label><br>
+                <input type="file" name="file" id="file" accept=".txt">
+            </div>
+        </fieldset>
+
+        <div id="labels">
+            <p>Start</p>
+            <p>Goal</p>
+        </div>
+
+        <div id="start-div" class="character-div">
+            <img src="../static/images/mario.png" alt="">
+        </div>
+
+        <div id="goal-div" class="character-div">
+            <img src="../static/images/peach.png" alt="">
+        </div>
+
+        <div id="buttons">
+            <button id="load-maze-btn" class="div-btn">Load Maze</button>
+            <button id="play-btn" class="div-btn" disabled>Play</button>
+            <button id="reset-btn" class="div-btn">Reset</button>
+        </div>
+    </div>
+
+</body>
+</html>

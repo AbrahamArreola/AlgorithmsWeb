@@ -1,0 +1,187 @@
+#container{
+    width: 560px;
+    float: left;
+    margin: 10px;
+    transform: translate(180px, 30px);
+}
+
+.maze{
+    border: 1px solid gray;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    cursor: pointer;
+}
+
+#config-div{
+    width: 539px;
+    height: 556px;
+    float: left;
+    border: 1px solid black;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 68px -6px rgba(0,0,0,0.5);
+    transform: translate(180px, 30px);
+    padding: 20px 20px 10px 25px;
+}
+
+#config-div h1{
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#config-div p, label{
+    font-size: 14px;
+}
+
+fieldset.map-loader, fieldset.map-loader1{
+    float: left;
+    border: 1px groove black !important;
+    padding: 0 1.4em .5em 1.4em !important;
+    margin: 0 0 .5em 0 !important;
+    background-color: gainsboro;
+}
+
+fieldset.map-loader{
+    margin: 0 1em .5em 0 !important;
+}
+
+.map-loader, .map-loader1{
+    width: 235px;
+}
+
+legend.map-loader, legend.map-loader1{
+    width: auto;
+    padding:0 10px;
+    border-bottom:none;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: white;
+    border: 1px solid black;
+}
+
+#group-container{
+    width: 260px;
+}
+
+#group-container input{
+    width: 135px;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+#start, #goal{
+    width: 80px;
+    height: 80px;
+    border: 1px solid black;
+    display: inline-block;
+}
+
+#labels p{
+    display: inline-block;
+    width: 48%;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.character-div{
+    float: left;
+    width: 120px;
+    height: 120px;
+    border: 1px solid black;
+}
+
+#start-div{
+    transform: translate(60px, 0);
+}
+
+#goal-div{
+    transform: translate(180px, 0);
+}
+
+.character-div img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+#buttons{
+    display: inline-block;
+    transform: translate(36px, 25px);
+}
+
+.div-btn{
+    height: 35px;
+    border-radius: 15px;
+    background: rgb(52, 58, 64);
+    color: white;
+}
+
+#load-maze-btn{
+    width: 100px;
+}
+
+#play-btn{
+    width: 200px;
+}
+
+#reset-btn{
+    width: 100px;
+}
+
+.div-btn:focus{
+    outline: none;
+}
+
+.div-btn:hover{
+    background: rgba(52, 58, 64, .8);
+}
+
+@media only screen and (max-width: 768px){
+    #container{
+        transform: translate(12%, 600px);
+    }
+    #config-div{
+        transform: translate(12%, -570px);
+    }
+}
+
+@media only screen and (max-width: 411px){
+    .maze{
+        width: 40px;
+        height: 40px;
+    }
+    #container{
+        width: 440px;
+        margin: 0;
+        transform: translate(12px, 600px);
+    }
+    #config-div{
+        width: 445px;
+        transform: translate(-2px, -450px);
+    }
+    .map-loader, .map-loader1{
+        width: 187px;
+    }
+    #start-div{
+        transform: translate(45px, 0);
+    }
+    #goal-div{
+        transform: translate(115px, 0);
+    }
+    #labels p{
+        width: 48%;
+    }
+    #buttons button{
+        width: 120px;
+    }
+    #buttons{
+        transform: translate(9px, 25px);
+    }
+}

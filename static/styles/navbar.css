@@ -1,0 +1,10 @@
+.nav-item{
+    text-align: center;
+    padding-top: 10px;
+    padding-right: 15px;
+}
+
+.nav-item i{
+    color: gray;
+    transform: scale(2,2);
+}

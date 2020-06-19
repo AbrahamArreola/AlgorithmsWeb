@@ -1,0 +1,1 @@
+A website where are implemented search algorithms in a practical problem like maze solvers and many more.
