@@ -5,10 +5,13 @@ var divStart;
 var divGoal;
 var loadMaze;
 var fileInput;
+var playButton;
 
 var divStartSelected = false;
 var divGoalSelected = false ;
 var mazeLoaded = false;
+var startSelected = false;
+var goalSelected = false;
 
 var currentImg = null;
 var currentStartTile = null;
@@ -23,6 +26,7 @@ window.onload = function(){
     divGoal = document.getElementById("goal-div");
     loadMaze = document.getElementById("load-maze-btn");
     fileInput = document.getElementById("file");
+    playButton = document.getElementById("play-btn");
 
     selectRadioBtn.onclick = function(){
         fileField.disabled = true;
@@ -41,6 +45,8 @@ window.onload = function(){
             }
             currentImg = divStart.childNodes[1].getAttribute("src");
             divStartSelected = !divStartSelected;
+            startSelected = true;
+            playButton.disabled = true;
         }
     }
 
@@ -53,6 +59,8 @@ window.onload = function(){
             }
             currentImg = divGoal.childNodes[1].getAttribute("src");
             divGoalSelected = !divGoalSelected;
+            goalSelected = true;
+            playButton.disabled = true;
         }
     }
 
@@ -80,6 +88,10 @@ window.onload = function(){
         }
 
         if(this.value != null) reader.readAsText(fileInput.files[0]);
+    }
+
+    playButton.onclick = function(){
+        //pending
     }
 }
 
@@ -146,6 +158,9 @@ function tileClicked(tile){
         }
         tile.style.backgroundImage = "url(" + currentImg + ")";
         currentImg = null;
+        if(startSelected && goalSelected){
+            playButton.disabled = false;
+        }
     }
 
     if(selectRadioBtn.checked){
