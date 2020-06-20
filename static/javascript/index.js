@@ -65,8 +65,64 @@ window.onload = function(){
         alert("Maze loaded successfully");
     }
 
+    fileInput.onclick = function(){
+        this.value = null;
+    }
+
     fileInput.onchange = function(){
-        //Pending
+        clearMaze();
+
+        var reader = new FileReader();
+
+        reader.onload = function(){
+            var content = reader.result;
+            loadMazeFromFile(content);
+        }
+
+        if(this.value != null) reader.readAsText(fileInput.files[0]);
+    }
+}
+
+function loadMazeFromFile(content){
+    if(content == ""){
+        alert("File empty");
+        return;
+    }
+
+    var rows = content.split(/\r?\n/);
+    var columns;
+
+    for(var i = 0; i < rows.length; i++){
+        columns = rows[i].split(",");
+        if(columns.length > 10 || i > 9){
+            alert("Unsupported file sizes!");
+            return;
+        }
+        for(var j = 0; j < columns.length; j++){
+            if(columns[j] != "0" && columns[j] != "1"){
+                alert("Unsupported file data!");
+                return;
+            }
+        }
+    }
+
+    for(var i = 0; i < rows.length; i++){
+        columns = rows[i].split(",");
+        for(var j = 0; j < columns.length; j++){
+            if(columns[j] == "1"){
+                document.getElementById("tile"+i.toString()+j.toString()).style.background = "black";
+            }
+        }
+    }
+}
+
+function clearMaze(){
+    for(var i = 0; i < 10; i++){
+        for(var j = 0; j < 10; j++){
+            var tile = document.getElementById("tile"+i.toString()+j.toString());
+            tile.style.background = "white";
+            tile.style.backgroundSize = "contain";
+        }
     }
 }
 
