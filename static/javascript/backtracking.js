@@ -1,3 +1,4 @@
+//DOM's elements variables
 var fileRadioBtn;
 var selectRadioBtn;
 var fileField;
@@ -7,16 +8,19 @@ var loadMaze;
 var fileInput;
 var playButton;
 
+//Flag variables to control the program flow
 var divStartSelected = false;
 var divGoalSelected = false ;
 var mazeLoaded = false;
 var startSelected = false;
 var goalSelected = false;
 
+//Variables to move the images
 var currentImg = null;
 var currentStartTile = null;
 var currentGoalTile = null;
 
+//DOM's elements events
 window.onload = function(){
     fileRadioBtn = document.getElementById("file-load");
     selectRadioBtn = document.getElementById("select-load");
@@ -91,10 +95,92 @@ window.onload = function(){
     }
 
     playButton.onclick = function(){
-        //pending
+        playButton.disabled = true;
+        var initialPosition = [parseInt((currentStartTile.id).charAt(4)), parseInt((currentStartTile.id).charAt(5))];
+        finalPosition = [parseInt((currentGoalTile.id).charAt(4)), parseInt((currentGoalTile.id).charAt(5))];
+        stack.push(initialPosition);
+        positionCharacter = initialPosition;
+        timer = setInterval(backTrackingAlgorithm, 500);
     }
 }
 
+//Variables to control the backtracking algorithm flow
+var shownPositions = [];
+var stack = [];
+var positionCharacter;
+var timer;
+var finalPosition;
+
+function backTrackingAlgorithm(){
+    var currentPosition = stack[stack.length - 1];
+
+    if(currentPosition.toString() == finalPosition.toString()){
+        clearInterval(timer);
+        alert("You've reached the goal");
+        
+        document.getElementById("tile" + positionCharacter[0] + positionCharacter[1]).style.background = "white";
+        document.getElementById("tile" + positionCharacter[0] + positionCharacter[1]).style.backgroundSize = "contain";
+        currentGoalTile.style.background = "white";
+        currentGoalTile.style.backgroundSize = "contain";
+
+        startSelected = false;
+        goalSelected = false;
+        shownPositions = [];
+        stack = [];
+
+        currentImg = null;
+        currentStartTile = null;
+        currentGoalTile = null;
+    }
+    else{
+        var tile = document.getElementById("tile" + positionCharacter[0].toString() + positionCharacter[1].toString());
+        tile.style.background = "white";
+        tile.style.backgroundSize = "contain";
+
+        var newTile = document.getElementById("tile" + currentPosition[0].toString() + currentPosition[1].toString());
+        newTile.style.background = "url(" + divStart.childNodes[1].getAttribute("src") + ")";
+        newTile.style.backgroundSize = "contain";
+
+        var positions = getPositions(currentPosition);
+        if(positions.length == 0){
+            shownPositions.push(stack.pop());
+        }
+        else{
+            shownPositions.push(currentPosition);
+            stack.push(positions[0]);
+        }
+        positionCharacter = currentPosition;
+    }
+}
+
+//Gets the child positions of the parent position
+function getPositions(position){
+    var positions = [];
+
+    if((position[0] - 1 >= 0) && 
+       (document.getElementById("tile" + (position[0] - 1).toString() + position[1].toString()).style.background != "black") &&
+       (!shownPositions.some(x => x.toString() == [position[0] - 1, position[1]].toString()))
+    ) positions.push([position[0] - 1, position[1]]);
+
+    if((position[1] + 1 < 10) && 
+       (document.getElementById("tile" + position[0].toString() + (position[1] + 1).toString()).style.background != "black") &&
+       (!shownPositions.some(x => x.toString() == [position[0], position[1] + 1].toString()))
+    ) positions.push([position[0], position[1] + 1]);
+
+    if((position[0] + 1 < 10) && 
+       (document.getElementById("tile" + (position[0] + 1).toString() + position[1].toString()).style.background != "black") &&
+       (!shownPositions.some(x => x.toString() == [position[0] + 1, position[1]].toString()))
+    ) positions.push([position[0] + 1, position[1]]);
+
+    if((position[1] - 1 >= 0) && 
+       (document.getElementById("tile" + position[0].toString() + (position[1] - 1).toString()).style.background != "black") &&
+       (!shownPositions.some(x => x.toString() == [position[0], position[1] - 1].toString()))
+    ) positions.push([position[0], position[1] - 1]);
+
+    return positions;
+}
+
+//Check the txt file and loads the maze from it if it's supported
 function loadMazeFromFile(content){
     if(content == ""){
         alert("File empty");
@@ -128,6 +214,7 @@ function loadMazeFromFile(content){
     }
 }
 
+//Clear all the tiles
 function clearMaze(){
     for(var i = 0; i < 10; i++){
         for(var j = 0; j < 10; j++){
@@ -138,6 +225,7 @@ function clearMaze(){
     }
 }
 
+//Function event if a tile of the maze is clicked
 function tileClicked(tile){
     if(currentImg != null && tile.style.background != "black"){
         if(divStartSelected){
