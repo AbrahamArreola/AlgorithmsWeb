@@ -8,3 +8,9 @@
     color: gray;
     transform: scale(2,2);
 }
+
+@media(max-width: 768px){
+    .navbar-nav{
+        flex-direction: unset !important;
+    }
+}

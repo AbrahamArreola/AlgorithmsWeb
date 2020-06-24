@@ -62,10 +62,6 @@ legend.map-loader, legend.map-loader1{
     border: 1px solid black;
 }
 
-#group-container{
-    width: 260px;
-}
-
 #group-container input{
     width: 135px;
     font-size: 14px;
@@ -160,14 +156,14 @@ legend.map-loader, legend.map-loader1{
     #container{
         width: 440px;
         margin: 0;
-        transform: translate(12px, 600px);
+        transform: translate(50px, 600px);
     }
     #config-div{
-        width: 445px;
-        transform: translate(-2px, -450px);
+        width: 486px;
+        transform: translate(15px, -450px);
     }
     .map-loader, .map-loader1{
-        width: 187px;
+        width: 210px;
     }
     #start-div{
         transform: translate(45px, 0);
