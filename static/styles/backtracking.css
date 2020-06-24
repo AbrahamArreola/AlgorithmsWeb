@@ -143,7 +143,7 @@ legend.map-loader, legend.map-loader1{
     background: rgba(52, 58, 64, .8);
 }
 
-@media only screen and (max-width: 768px){
+@media(max-width: 768px){
     #container{
         transform: translate(12%, 600px);
     }
@@ -152,7 +152,7 @@ legend.map-loader, legend.map-loader1{
     }
 }
 
-@media only screen and (max-width: 411px){
+@media(max-width: 411px){
     .maze{
         width: 40px;
         height: 40px;
