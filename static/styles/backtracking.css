@@ -156,11 +156,11 @@ legend.map-loader, legend.map-loader1{
     #container{
         width: 440px;
         margin: 0;
-        transform: translate(50px, 600px);
+        transform: translate(30px, 600px);
     }
     #config-div{
         width: 486px;
-        transform: translate(15px, -450px);
+        transform: translate(-4px, -450px);
     }
     .map-loader, .map-loader1{
         width: 210px;
