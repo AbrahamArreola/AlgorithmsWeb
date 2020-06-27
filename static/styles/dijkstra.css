@@ -1,5 +1,16 @@
 #hello{
     width: 480px;
     height: 240px;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-image: url("../images/hello-there.gif");
+}
+
+@media(max-width: 550px){
+    body{
+        width: 480px;
+    }
+    #hello{
+        width: auto;
+    }
 }
